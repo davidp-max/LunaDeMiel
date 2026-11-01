@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viaje Corea y Japón 2027 | Bitácora e Itinerario Interactivo</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0b132b',
+                            dark: '#1c2541',
+                            card: '#1e293b',
+                            coral: '#e06d53',
+                            pink: '#f472b6',
+                            gold: '#fbbf24',
+                            teal: '#14b8a6',
+                            blue: '#3b82f6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Noto Serif JP', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b132b;
+            color: #f8fafc;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .text-gradient-cherry {
+            background: linear-gradient(135deg, #f472b6 0%, #fb7185 50%, #e06d53 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fef08a 0%, #f1c40f 50%, #e67e22 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(224, 109, 83, 0.4);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(224, 109, 83, 0.8);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-rose-500 selection:text-white custom-scrollbar">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand Title -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('itinerario')">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-500 to-amber-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-rose-500/20">
+                        <i class="fa-solid me-0.5 fa-plane-departure"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold tracking-tight text-white block leading-tight">COREA & JAPÓN <span class="text-rose-400">2027</span></span>
+                        <span class="text-xs text-slate-400 font-medium">26 Apr – 11 May (16 Días)</span>
+                    </div>
+                </div>
+
+                <!-- Nav Tabs Desktop -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <button onclick="switchTab('itinerario')" id="nav-itinerario" class="nav-btn px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-rose-400 bg-rose-500/10 border border-rose-500/20 flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-days"></i> Itinerario
+                    </button>
+                    <button onclick="switchTab('logistica')" id="nav-logistica" class="nav-btn px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-compass"></i> Logística & Apps
+                    </button>
+                    <button onclick="switchTab('hoteles')" id="nav-hoteles" class="nav-btn px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-hotel"></i> Hoteles
+                    </button>
+                    <button onclick="switchTab('equipaje')" id="nav-equipaje" class="nav-btn px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-suitcase"></i> Checklist Equipaje
+                    </button>
+                    <button onclick="switchTab('conversor')" id="nav-conversor" class="nav-btn px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-calculator"></i> Divisas & Presupuesto
+                    </button>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="flex items-center space-x-3">
+                    <a href="#countdown-section" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 text-amber-300 text-xs font-semibold border border-amber-500/30">
+                        <i class="fa-solid fa-clock text-amber-400 animate-pulse"></i>
+                        <span id="header-countdown-text">Cargando...</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Bar -->
+        <div class="md:hidden flex overflow-x-auto px-4 py-2 space-x-2 border-t border-slate-800 custom-scrollbar">
+            <button onclick="switchTab('itinerario')" id="mobile-nav-itinerario" class="mobile-nav-btn whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-semibold bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                <i class="fa-solid fa-calendar-days me-1"></i> Itinerario
+            </button>
+            <button onclick="switchTab('logistica')" id="mobile-nav-logistica" class="mobile-nav-btn whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300">
+                <i class="fa-solid fa-compass me-1"></i> Logística
+            </button>
+            <button onclick="switchTab('hoteles')" id="mobile-nav-hoteles" class="mobile-nav-btn whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300">
+                <i class="fa-solid fa-hotel me-1"></i> Hoteles
+            </button>
+            <button onclick="switchTab('equipaje')" id="mobile-nav-equipaje" class="mobile-nav-btn whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300">
+                <i class="fa-solid fa-suitcase me-1"></i> Equipaje
+            </button>
+            <button onclick="switchTab('conversor')" id="mobile-nav-conversor" class="mobile-nav-btn whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300">
+                <i class="fa-solid fa-calculator me-1"></i> Divisas
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-slate-900 overflow-hidden border-b border-slate-800">
+        <!-- Background Image Overlay with parallax feeling -->
+        <div class="absolute inset-0 z-0 opacity-25 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=2000&q=80');"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/90 to-slate-950 z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Main Header Info -->
+                <div class="lg:col-span-7 space-y-4 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-torii-gate"></i> Gran Aventura Asiática 2027
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                        Descubriendo <span class="text-gradient-cherry">Corea del Sur</span> &amp; <span class="text-gradient-gold">Japón</span>
+                    </h1>
+                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl font-light leading-relaxed">
+                        Un recorrido de 16 días desde la modernidad de Seúl y los acantilados de Busán, hasta los santuarios milenarios de Kioto, el ritmo callejero de Osaka y la vuelta a Zaragoza.
+                    </p>
+                    <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-4 text-xs sm:text-sm font-medium text-slate-300">
+                        <span class="flex items-center gap-2 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
+                            <i class="fa-solid fa-plane text-sky-400"></i> Madrid &rarr; Seúl / Osaka &rarr; Madrid
+                        </span>
+                        <span class="flex items-center gap-2 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
+                            <i class="fa-solid fa-bus text-amber-400"></i> Bus Zaragoza
+                        </span>
+                        <span class="flex items-center gap-2 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
+                            <i class="fa-solid fa-train text-emerald-400"></i> KTX &amp; Haruka Express
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Live Countdown Box -->
+                <div id="countdown-section" class="lg:col-span-5">
+                    <div class="glass-panel p-6 rounded-2xl shadow-2xl border border-slate-700/60 relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl"></div>
+                        <h3 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-4 flex items-center justify-between">
+                            <span>Cuenta Regresiva al Despegue</span>
+                            <span class="text-rose-400"><i class="fa-solid fa-rocket"></i> 26 Abr 2027</span>
+                        </h3>
+                        
+                        <div class="grid grid-cols-4 gap-2 sm:gap-3 text-center">
+                            <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800">
+                                <span id="cd-days" class="text-2xl sm:text-3xl font-extrabold text-white block">--</span>
+                                <span class="text-[10px] sm:text-xs text-slate-400 uppercase font-semibold">Días</span>
+                            </div>
+                            <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800">
+                                <span id="cd-hours" class="text-2xl sm:text-3xl font-extrabold text-rose-400 block">--</span>
+                                <span class="text-[10px] sm:text-xs text-slate-400 uppercase font-semibold">Horas</span>
+                            </div>
+                            <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800">
+                                <span id="cd-mins" class="text-2xl sm:text-3xl font-extrabold text-amber-400 block">--</span>
+                                <span class="text-[10px] sm:text-xs text-slate-400 uppercase font-semibold">Min</span>
+                            </div>
+                            <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800">
+                                <span id="cd-secs" class="text-2xl sm:text-3xl font-extrabold text-teal-400 block">--</span>
+                                <span class="text-[10px] sm:text-xs text-slate-400 uppercase font-semibold">Seg</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                            <span><i class="fa-solid fa-ticket text-rose-400 me-1"></i> Vuelo MAD-ICN: 11:05 AM</span>
+                            <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-circle-check me-1"></i> Listo para planificar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- TAB 1: ITINERARIO INTERACTIVO -->
+        <section id="tab-itinerario" class="tab-content space-y-6">
+            
+            <!-- Filter & Search Control Panel -->
+            <div class="glass-panel p-4 sm:p-6 rounded-2xl border border-slate-800 space-y-4">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    
+                    <!-- Search Input -->
+                    <div class="relative w-full md:w-96">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="search-input" onkeyup="filterItinerary()" placeholder="Buscar templo, mercado, hanbok, vuelo..." class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all">
+                    </div>
+
+                    <!-- City Filter Badges -->
+                    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto justify-start md:justify-end">
+                        <span class="text-xs text-slate-400 font-medium me-1 hidden lg:inline"><i class="fa-solid fa-filter"></i> Ciudad:</span>
+                        <button onclick="setCityFilter('all')" class="city-filter-btn active-city px-3 py-1.5 rounded-lg text-xs font-semibold bg-rose-500 text-white shadow-md transition-all" data-city="all">Todos</button>
+                        <button onclick="setCityFilter('Seúl')" class="city-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all" data-city="Seúl">🇰🇷 Seúl</button>
+                        <button onclick="setCityFilter('Busán')" class="city-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all" data-city="Busán">🇰🇷 Busán</button>
+                        <button onclick="setCityFilter('Kioto')" class="city-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all" data-city="Kioto">🇯🇵 Kioto</button>
+                        <button onclick="setCityFilter('Osaka')" class="city-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all" data-city="Osaka">🇯🇵 Osaka</button>
+                        <button onclick="setCityFilter('Tránsito')" class="city-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all" data-city="Tránsito">✈️ Tránsito</button>
+                    </div>
+                </div>
+
+                <!-- Quick Tags Bar -->
+                <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80 overflow-x-auto text-xs text-slate-400">
+                    <span class="font-medium text-slate-500 shrink-0">Etiquetas populares:</span>
+                    <button onclick="quickSearch('Templo')" class="px-2.5 py-1 rounded-md bg-slate-800/60 hover:bg-slate-700 text-slate-300 shrink-0">🏯 Templos</button>
+                    <button onclick="quickSearch('Mercado')" class="px-2.5 py-1 rounded-md bg-slate-800/60 hover:bg-slate-700 text-slate-300 shrink-0">🥢 Gastronomía &amp; Mercados</button>
+                    <button onclick="quickSearch('Tren')" class="px-2.5 py-1 rounded-md bg-slate-800/60 hover:bg-slate-700 text-slate-300 shrink-0">🚅 Trenes &amp; KTX</button>
+                    <button onclick="quickSearch('Hanbok')" class="px-2.5 py-1 rounded-md bg-slate-800/60 hover:bg-slate-700 text-slate-300 shrink-0">🥋 Hanbok / Tradición</button>
+                    <button onclick="quickSearch('Vuelo')" class="px-2.5 py-1 rounded-md bg-slate-800/60 hover:bg-slate-700 text-slate-300 shrink-0">✈️ Vuelos</button>
+                    <button onclick="quickSearch('')" class="px-2 py-1 rounded-md bg-rose-500/10 text-rose-400 shrink-0 hover:bg-rose-500/20">Limpiar todo</button>
+                </div>
+            </div>
+
+            <!-- Golden Week Alert Badge inside Itinerary view -->
+            <div class="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 flex items-start gap-3 text-amber-200 text-xs sm:text-sm">
+                <i class="fa-solid fa-triangle-exclamation text-amber-400 text-xl mt-0.5 shrink-0"></i>
+                <div class="space-y-1">
+                    <span class="font-bold text-amber-300 block text-sm">Alerta de Golden Week en Japón (3 - 5 de Mayo)</span>
+                    <p>
+                        Durante los días en Kioto (3 al 5 de Mayo) se celebra la festividad de la <strong>Golden Week</strong>. Se aconseja madrugar para visitar templos y reservar trayectos en tren (como el JR Haruka Express desde Osaka KIX) con la mayor antelación posible.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Itinerary Days Feed -->
+            <div id="itinerary-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Javascript will render day cards dynamically here -->
+            </div>
+
+            <!-- Empty Search State -->
+            <div id="no-results-msg" class="hidden text-center py-16 space-y-3">
+                <i class="fa-solid fa-magnifying-glass-location text-5xl text-slate-600"></i>
+                <h3 class="text-lg font-semibold text-slate-300">No se encontraron actividades</h3>
+                <p class="text-sm text-slate-500">Prueba ajustando el texto de búsqueda o cambiando el filtro de ciudad.</p>
+                <button onclick="resetSearch()" class="mt-2 px-4 py-2 rounded-lg bg-rose-500 text-white text-xs font-semibold">Ver todos los días</button>
+            </div>
+        </section>
+
+        <!-- TAB 2: LOGÍSTICA Y APPS -->
+        <section id="tab-logistica" class="tab-content hidden space-y-8">
+            <div class="space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Logística Clave &amp; Preparativos</h2>
+                <p class="text-slate-400 text-sm">Consejos indispensables, avisos sobre festividades y aplicaciones esenciales para moverte con fluidez por Corea y Japón.</p>
+            </div>
+
+            <!-- Important Alerts Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Golden Week Warning Card -->
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-amber-500 space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-amber-500/20 text-amber-400 text-lg">
+                            <i class="fa-solid fa-calendar-xmark"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">Alerta Golden Week (Japón)</h3>
+                            <span class="text-xs text-amber-400 font-medium">3 a 5 de Mayo de 2027</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        La semana festiva nacional en Japón implica una ocupación máxima en trenes shinkansen y hoteles. Coincide exactamente con nuestra estancia en Kioto.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                        <li>Reservar hotel en Kioto con <strong>6 a 8 meses de antelación</strong>.</li>
+                        <li>Reservar los billetes del <strong>JR Haruka Express</strong> nada más abrir venta.</li>
+                        <li>Acudir a monumentos (Fushimi Inari, Arashiyama) a primera hora del día (06:30 - 07:30 AM).</li>
+                    </ul>
+                </div>
+
+                <!-- KTX Booking Korea -->
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-sky-500 space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-sky-500/20 text-sky-400 text-lg">
+                            <i class="fa-solid fa-train"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">Reserva de Tren KTX (Corea)</h3>
+                            <span class="text-xs text-sky-400 font-medium">Seúl &rarr; Busán (30 de Abril)</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        El tren de alta velocidad KTX conecta la estación de Seúl con Busán en solo 2 horas y 29 minutos.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                        <li>Las reservas abren exactamente <strong>30 días antes</strong> en la web oficial de Korail.</li>
+                        <li>Horario reservado: <strong>08:35 AM &rarr; 11:04 AM</strong>.</li>
+                        <li>Llevar pasaporte físico para el control y confirmación digital del billete.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Transit Cards Comparison -->
+            <div class="glass-panel p-6 rounded-2xl space-y-4">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-credit-card text-rose-400"></i> Tarjetas de Transporte Recargables
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-rose-400 text-sm">🇰🇷 T-Money Card (Corea)</span>
+                            <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400">Puntos de compra: Conveni stores (CU, GS25)</span>
+                        </div>
+                        <p class="text-xs text-slate-300">
+                            Imprescindible para el metro y autobuses de Seúl y Busán. Se compra en tiendas de conveniencia en el aeropuerto de Incheon y se recarga con <strong>efectivo (Wones)</strong>.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-amber-400 text-sm">🇯🇵 ICOCA / Suica (Japón)</span>
+                            <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400">Digital en Apple Wallet / Tarjeta física</span>
+                        </div>
+                        <p class="text-xs text-slate-300">
+                            Para metros en Kioto, Osaka y trenes locales JR. La tarjeta ICOCA es la nativa de la región de Kansai. Se recarga en máquinas de estación con yenes en efectivo o Apple Pay.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Essential Apps Grid -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-mobile-screen-button text-teal-400"></i> Aplicaciones Imprescindibles
+                </h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Naver Map -->
+                    <div class="glass-card p-4 rounded-xl flex items-start gap-3 border border-slate-800 hover:border-slate-700 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xl shrink-0">
+                            N
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-white text-sm">Naver Map</h4>
+                            <span class="text-[11px] bg-emerald-500/10 text-emerald-300 px-2 py-0.5 rounded font-medium">Corea del Sur</span>
+                            <p class="text-xs text-slate-400 leading-normal">Google Maps no ofrece navegación peatonal precisa en Corea. Naver Map es la app nº1 para rutas a pie, buses y metro.</p>
+                        </div>
+                    </div>
+
+                    <!-- Kakao T -->
+                    <div class="glass-card p-4 rounded-xl flex items-start gap-3 border border-slate-800 hover:border-slate-700 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xl shrink-0">
+                            <i class="fa-solid fa-taxi"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-white text-sm">Kakao T</h4>
+                            <span class="text-[11px] bg-amber-500/10 text-amber-300 px-2 py-0.5 rounded font-medium">Corea del Sur</span>
+                            <p class="text-xs text-slate-400 leading-normal">Para pedir taxis de forma económica y segura con destino fijado en mapa sin necesidad de hablar coreano.</p>
+                        </div>
+                    </div>
+
+                    <!-- Visit Japan Web -->
+                    <div class="glass-card p-4 rounded-xl flex items-start gap-3 border border-slate-800 hover:border-slate-700 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-xl shrink-0">
+                            <i class="fa-solid fa-passport"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-white text-sm">Visit Japan Web</h4>
+                            <span class="text-[11px] bg-rose-500/10 text-rose-300 px-2 py-0.5 rounded font-medium">Japón</span>
+                            <p class="text-xs text-slate-400 leading-normal">Web oficial para rellenar los códigos QR de Inmigración y Aduanas antes de aterrizar en el aeropuerto KIX de Osaka.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q-Code Korea -->
+                    <div class="glass-card p-4 rounded-xl flex items-start gap-3 border border-slate-800 hover:border-slate-700 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-xl shrink-0">
+                            <i class="fa-solid fa-qrcode"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-white text-sm">Q-Code Corea</h4>
+                            <span class="text-[11px] bg-sky-500/10 text-sky-300 px-2 py-0.5 rounded font-medium">Corea del Sur</span>
+                            <p class="text-xs text-slate-400 leading-normal">Formulario de salud e ingreso para agilizar el paso por aduanas en el aeropuerto de Seúl Incheon.</p>
+                        </div>
+                    </div>
+
+                    <!-- Google Translate / Papago -->
+                    <div class="glass-card p-4 rounded-xl flex items-start gap-3 border border-slate-800 hover:border-slate-700 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-xl shrink-0">
+                            <i class="fa-solid fa-language"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-white text-sm">Papago &amp; Translate</h4>
+                            <span class="text-[11px] bg-indigo-500/10 text-indigo-300 px-2 py-0.5 rounded font-medium">Ambos países</span>
+                            <p class="text-xs text-slate-400 leading-normal">Papago (de Naver) es la mejor app para traducir carteles y menús en Corea. Google Translate con cámara funciona perfecto en Japón.</p>
+                        </div>
+                    </div>
+
+                    <!-- Japan Travel by NAVITIME -->
+                    <div class="glass-card p-4 rounded-xl flex items-start gap-3 border border-slate-800 hover:border-slate-700 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xl shrink-0">
+                            <i class="fa-solid fa-route"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-white text-sm">Navitime Japan</h4>
+                            <span class="text-[11px] bg-purple-500/10 text-purple-300 px-2 py-0.5 rounded font-medium">Japón</span>
+                            <p class="text-xs text-slate-400 leading-normal">Muestra horarios exactos de trenes, andenes de salida, transbordos y compatibilidad con pases JR.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: HOTELES Y ALOJAMIENTOS -->
+        <section id="tab-hoteles" class="tab-content hidden space-y-6">
+            <div class="space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Hoteles y Bases de Estancia</h2>
+                <p class="text-slate-400 text-sm">Información detallada de los alojamientos seleccionados para el itinerario.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Hotel 1: Seúl -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 flex flex-col">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=800&q=80');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 bg-rose-500 text-white font-bold text-xs px-2.5 py-1 rounded-full shadow">
+                            🇰🇷 Seúl (4 Noches)
+                        </span>
+                        <span class="absolute bottom-3 right-3 text-xs text-slate-200 bg-slate-950/80 px-2.5 py-1 rounded-lg backdrop-blur">
+                            27 Apr – 01 May 2027
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <h3 class="text-xl font-bold text-white">Hithere City Myeongdong</h3>
+                            <p class="text-xs text-slate-300 flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-rose-400"></i> Myeongdong, Seúl, Corea del Sur
+                            </p>
+                            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+                                Ubicación inmejorable en pleno corazón del barrio comercial y gastronómico de Myeongdong. A pasos de los puestos de comida callejera, estación de metro y líneas directas a la Torre N Seoul y Palacio Gyeongbokgung.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-400"><i class="fa-solid fa-wifi text-emerald-400 me-1"></i> WiFi Gratis / Central</span>
+                            <span class="text-rose-400 font-semibold">Base Seúl</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel 2: Busán -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 flex flex-col">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=800&q=80');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 bg-teal-500 text-white font-bold text-xs px-2.5 py-1 rounded-full shadow">
+                            🇰🇷 Busán (3 Noches)
+                        </span>
+                        <span class="absolute bottom-3 right-3 text-xs text-slate-200 bg-slate-950/80 px-2.5 py-1 rounded-lg backdrop-blur">
+                            30 Apr – 03 May 2027
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <h3 class="text-xl font-bold text-white">Toyoko Inn Busan Seomyeon</h3>
+                            <p class="text-xs text-slate-300 flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-teal-400"></i> Seomyeon, Busán, Corea del Sur
+                            </p>
+                            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+                                Situado en Seomyeon, el nudo de comunicación principal de Busán donde cruzan las dos líneas clave de metro. Rodeado de cafeterías (Jeonpo Cafe Street) y centro comercial subterráneo.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-400"><i class="fa-solid fa-mug-hot text-amber-400 me-1"></i> Desayuno incluido</span>
+                            <span class="text-teal-400 font-semibold">Base Busán</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel 3: Kioto -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 flex flex-col">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 bg-rose-600 text-white font-bold text-xs px-2.5 py-1 rounded-full shadow">
+                            🇯🇵 Kioto (5 Noches)
+                        </span>
+                        <span class="absolute bottom-3 right-3 text-xs text-slate-200 bg-slate-950/80 px-2.5 py-1 rounded-lg backdrop-blur">
+                            03 May – 08 May 2027
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <h3 class="text-xl font-bold text-white">Hotel Tradicional / Central Kioto</h3>
+                            <p class="text-xs text-slate-300 flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-rose-400"></i> Zona Shijo / Estación de Kioto / Gion
+                            </p>
+                            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+                                Excelente conectividad para las salidas matutinas hacia Fushimi Inari, Arashiyama, Nara y Uji. Recomendable elegir zona cercana a Shijo-dori para disfrutar de cenas nocturnas en Pontocho.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-amber-300"><i class="fa-solid fa-triangle-exclamation me-1"></i> Reservar 8 meses antes</span>
+                            <span class="text-rose-400 font-semibold">Base Kioto</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel 4: Osaka -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 flex flex-col">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=800&q=80');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 bg-amber-500 text-white font-bold text-xs px-2.5 py-1 rounded-full shadow">
+                            🇯🇵 Osaka (2 Noches)
+                        </span>
+                        <span class="absolute bottom-3 right-3 text-xs text-slate-200 bg-slate-950/80 px-2.5 py-1 rounded-lg backdrop-blur">
+                            08 May – 10 May 2027
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <h3 class="text-xl font-bold text-white">Hotel en Namba / Shinsaibashi</h3>
+                            <p class="text-xs text-slate-300 flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-amber-400"></i> Namba / Dotonbori, Osaka
+                            </p>
+                            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+                                Ubicado en el corazón del ambiente gastronómico y nocturno de Osaka. Acceso directo con el tren Nankai Rapit hacia el aeropuerto internacional KIX para la partida final del viaje.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-400"><i class="fa-solid fa-train text-amber-400 me-1"></i> Directo al Aeropuerto KIX</span>
+                            <span class="text-amber-400 font-semibold">Base Osaka</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: CHECKLIST DE EQUIPAJE -->
+        <section id="tab-equipaje" class="tab-content hidden space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Checklist de Equipaje &amp; Documentos</h2>
+                    <p class="text-slate-400 text-sm">Gestiona lo necesario antes de volar. El progreso se guarda automáticamente.</p>
+                </div>
+                
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 flex items-center gap-4 shrink-0">
+                    <div>
+                        <span class="text-[10px] text-slate-400 uppercase font-bold block">Progreso total</span>
+                        <span id="checklist-progress-text" class="text-lg font-extrabold text-rose-400">0%</span>
+                    </div>
+                    <div class="w-32 bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                        <div id="checklist-progress-bar" class="bg-gradient-to-r from-rose-500 to-amber-400 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Packing Checklist Sections -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Category 1: Documentación -->
+                <div class="glass-panel p-5 rounded-2xl border border-slate-800 space-y-3">
+                    <h3 class="font-bold text-rose-400 text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-passport"></i> Documentos &amp; Salud
+                    </h3>
+                    <div class="space-y-2 text-xs" id="checklist-docs">
+                        <!-- JS items rendered -->
+                    </div>
+                </div>
+
+                <!-- Category 2: Electrónica -->
+                <div class="glass-panel p-5 rounded-2xl border border-slate-800 space-y-3">
+                    <h3 class="font-bold text-sky-400 text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-plug"></i> Electrónica &amp; Conectividad
+                    </h3>
+                    <div class="space-y-2 text-xs" id="checklist-tech">
+                        <!-- JS items rendered -->
+                    </div>
+                </div>
+
+                <!-- Category 3: Ropa y Calzado -->
+                <div class="glass-panel p-5 rounded-2xl border border-slate-800 space-y-3">
+                    <h3 class="font-bold text-emerald-400 text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-shirt"></i> Ropa &amp; Calzado (Primavera)
+                    </h3>
+                    <div class="space-y-2 text-xs" id="checklist-clothes">
+                        <!-- JS items rendered -->
+                    </div>
+                </div>
+
+                <!-- Category 4: Dinero y Pagos -->
+                <div class="glass-panel p-5 rounded-2xl border border-slate-800 space-y-3">
+                    <h3 class="font-bold text-amber-400 text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-wallet"></i> Tarjetas &amp; Monedas
+                    </h3>
+                    <div class="space-y-2 text-xs" id="checklist-money">
+                        <!-- JS items rendered -->
+                    </div>
+                </div>
+
+                <!-- Category 5: Varios -->
+                <div class="glass-panel p-5 rounded-2xl border border-slate-800 space-y-3">
+                    <h3 class="font-bold text-purple-400 text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-box-archive"></i> Varios &amp; Comodidad
+                    </h3>
+                    <div class="space-y-2 text-xs" id="checklist-misc">
+                        <!-- JS items rendered -->
+                    </div>
+                </div>
+
+                <!-- Add Custom Item Card -->
+                <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4 bg-slate-900/40">
+                    <div>
+                        <h3 class="font-bold text-slate-200 text-sm uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-plus text-rose-400"></i> Añadir Ítem Personalizado
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">¿Necesitas llevar algo extra? Agrégalo aquí a tu lista.</p>
+                    </div>
+
+                    <form onsubmit="addCustomChecklistItem(event)" class="space-y-3">
+                        <input type="text" id="custom-item-name" placeholder="Ej. Batería de repuesto cámara" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-rose-500">
+                        <select id="custom-item-cat" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-300 focus:outline-none">
+                            <option value="docs">Documentos</option>
+                            <option value="tech">Electrónica</option>
+                            <option value="clothes">Ropa</option>
+                            <option value="money">Dinero</option>
+                            <option value="misc" selected>Varios</option>
+                        </select>
+                        <button type="submit" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2 rounded-lg text-xs transition-all shadow">
+                            Guardar en la Lista
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: DIVISAS Y PRESUPUESTO -->
+        <section id="tab-conversor" class="tab-content hidden space-y-8">
+            <div class="space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Calculadora de Divisas &amp; Guía de Precios</h2>
+                <p class="text-slate-400 text-sm">Convierte euros a Won coreano (KRW) y Yen japonés (JPY) en tiempo real.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Currency Calculator -->
+                <div class="lg:col-span-5 glass-panel p-6 rounded-2xl border border-slate-800 space-y-6">
+                    <h3 class="font-bold text-white text-base flex items-center gap-2 border-b border-slate-800 pb-3">
+                        <i class="fa-solid fa-calculator text-amber-400"></i> Conversor Inmediato
+                    </h3>
+
+                    <div class="space-y-4">
+                        <!-- Input EUR -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Monto en EUROS (€)</label>
+                            <div class="relative">
+                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-slate-400">€</span>
+                                <input type="number" id="calc-eur" value="100" oninput="convertCurrency()" class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-8 pr-4 py-3 text-lg font-bold text-white focus:outline-none focus:ring-2 focus:ring-rose-500">
+                            </div>
+                        </div>
+
+                        <!-- Result KRW -->
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800/80 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 font-medium block">Equivalente en Corea del Sur</span>
+                                <span id="calc-krw" class="text-2xl font-extrabold text-rose-400">148.000 ₩</span>
+                            </div>
+                            <span class="text-xs bg-rose-500/20 text-rose-300 px-2.5 py-1 rounded-lg font-bold">KRW</span>
+                        </div>
+
+                        <!-- Result JPY -->
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800/80 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 font-medium block">Equivalente en Japón</span>
+                                <span id="calc-jpy" class="text-2xl font-extrabold text-amber-400">16.200 ¥</span>
+                            </div>
+                            <span class="text-xs bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-lg font-bold">JPY</span>
+                        </div>
+                    </div>
+
+                    <!-- Exchange Rate Settings -->
+                    <div class="pt-4 border-t border-slate-800/80 space-y-3">
+                        <span class="text-[11px] text-slate-400 uppercase font-bold block">Ajuste estimado de tipos de cambio</span>
+                        <div class="grid grid-cols-2 gap-3 text-xs">
+                            <div>
+                                <label class="text-slate-400 block mb-1">1 EUR = KRW</label>
+                                <input type="number" id="rate-krw" value="1480" oninput="convertCurrency()" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-white font-semibold">
+                            </div>
+                            <div>
+                                <label class="text-slate-400 block mb-1">1 EUR = JPY</label>
+                                <input type="number" id="rate-jpy" value="162" oninput="convertCurrency()" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-white font-semibold">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price Reference Table -->
+                <div class="lg:col-span-7 space-y-4">
+                    <h3 class="font-bold text-white text-base flex items-center gap-2">
+                        <i class="fa-solid fa-coins text-rose-400"></i> Guía Aprox. de Precios en Destino
+                    </h3>
+
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs text-slate-300">
+                                <thead class="bg-slate-900/90 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+                                    <tr>
+                                        <th class="py-3 px-4">Concepto / Producto</th>
+                                        <th class="py-3 px-4">Corea del Sur (KRW)</th>
+                                        <th class="py-3 px-4">Japón (JPY)</th>
+                                        <th class="py-3 px-4">Euros Aprox (€)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/60">
+                                    <tr class="hover:bg-slate-800/40 transition-all">
+                                        <td class="py-3 px-4 font-semibold text-white">Street Food (Hotteok, Takoyaki)</td>
+                                        <td class="py-3 px-4">2.000 - 3.000 ₩</td>
+                                        <td class="py-3 px-4">500 - 700 ¥</td>
+                                        <td class="py-3 px-4 text-emerald-400 font-bold">1.50 € - 3.50 €</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-800/40 transition-all">
+                                        <td class="py-3 px-4 font-semibold text-white">Viaje en Metro Urbano</td>
+                                        <td class="py-3 px-4">1.400 ₩</td>
+                                        <td class="py-3 px-4">210 - 280 ¥</td>
+                                        <td class="py-3 px-4 text-emerald-400 font-bold">1.00 € - 1.80 €</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-800/40 transition-all">
+                                        <td class="py-3 px-4 font-semibold text-white">Menú Comida / Ramen / BBQ</td>
+                                        <td class="py-3 px-4">10.000 - 18.000 ₩</td>
+                                        <td class="py-3 px-4">1.000 - 1.800 ¥</td>
+                                        <td class="py-3 px-4 text-emerald-400 font-bold">7.00 € - 12.00 €</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-800/40 transition-all">
+                                        <td class="py-3 px-4 font-semibold text-white">Cena Especial (Kobe Beef / Kaiseki)</td>
+                                        <td class="py-3 px-4">--</td>
+                                        <td class="py-3 px-4">8.000 - 15.000 ¥</td>
+                                        <td class="py-3 px-4 text-amber-400 font-bold">50.00 € - 90.00 €</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-800/40 transition-all">
+                                        <td class="py-3 px-4 font-semibold text-white">Entrada a Templos / N Tower</td>
+                                        <td class="py-3 px-4">3.000 - 16.000 ₩</td>
+                                        <td class="py-3 px-4">500 - 1.000 ¥</td>
+                                        <td class="py-3 px-4 text-emerald-400 font-bold">3.00 € - 10.00 €</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-800/40 transition-all">
+                                        <td class="py-3 px-4 font-semibold text-white">Café Matcha / Bebida Conveni</td>
+                                        <td class="py-3 px-4">2.000 - 5.000 ₩</td>
+                                        <td class="py-3 px-4">180 - 500 ¥</td>
+                                        <td class="py-3 px-4 text-emerald-400 font-bold">1.20 € - 3.20 €</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <div class="flex items-center justify-center space-x-2 text-slate-300 font-semibold">
+                <span>Corea del Sur &amp; Japón 2027</span>
+                <span>•</span>
+                <span class="text-rose-400">26 Abril – 11 Mayo</span>
+            </div>
+            <p>© Bitácora de Viaje Interactiva | Creada para coordinar la mejor experiencia en el Este de Asia.</p>
+        </div>
+    </footer>
+
+    <!-- HOUR DETAIL MODAL -->
+    <div id="hour-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-panel max-w-xl w-full rounded-2xl p-6 border border-slate-700 space-y-4 max-h-[90vh] flex flex-col shadow-2xl">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center space-x-3">
+                    <div id="modal-day-badge" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-500 text-white">Día X</div>
+                    <h3 id="modal-title" class="font-bold text-white text-base sm:text-lg">Detalles del Día</h3>
+                </div>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content Schedule Timeline -->
+            <div id="modal-timeline" class="flex-1 overflow-y-auto space-y-3 pr-1 custom-scrollbar text-xs">
+                <!-- Javascript fills hour items -->
+            </div>
+
+            <div class="pt-3 border-t border-slate-800 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold">
+                    Cerrar Detalle
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // --- ITINERARY DATA STRUCTURE ---
+        const itineraryData = [
+            {
+                dayNum: 1,
+                date: "26 de Abril",
+                city: "Tránsito",
+                cityBadgeClass: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30",
+                title: "Vuelo Salida Madrid - Seúl",
+                img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80",
+                summary: "Inicio de la aventura. Vuelo directo/escala desde Madrid (MAD) hacia Seúl Incheon (ICN). Pernocta en vuelo.",
+                tags: ["Vuelo", "Tránsito", "Madrid", "Seúl"],
+                hotel: "Noche a bordo del avión",
+                schedule: [
+                    { time: "11:05", desc: "Despegue desde el Aeropuerto Madrid-Barajas (MAD)." },
+                    { time: "Noche", desc: "Vuelo en conexión internacional hacia Corea del Sur. Descanso y cena a bordo." }
+                ]
+            },
+            {
+                dayNum: 2,
+                date: "27 de Abril",
+                city: "Seúl",
+                cityBadgeClass: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+                title: "Llegada a Seúl & Primer Impacto Nocturno",
+                img: "https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=800&q=80",
+                summary: "Aterrizaje en Incheon a las 13:30, traslado al hotel en Myeongdong, paseo por Insa-dong, N Seoul Tower y puestos callejeros.",
+                tags: ["Seúl", "Myeongdong", "Torre N Seoul", "Comida Callejera"],
+                hotel: "Hithere city Myeongdong",
+                schedule: [
+                    { time: "13:30", desc: "Llegada al Aeropuerto de Seúl Incheon (ICN). Paso por inmigración y recogida de maletas." },
+                    { time: "14:30 - 15:30", desc: "Traslado en tren AREX hasta la estación central de Seúl y check-in en Hithere city Myeongdong." },
+                    { time: "16:00 - 17:00", desc: "Paseo inicial por el barrio tradicional de Insa-dong & galería Ssamzigil." },
+                    { time: "17:30 - 19:30", desc: "Subida al teleférico y mirador de la N Seoul Tower para ver el atardecer sobre la capital." },
+                    { time: "20:00 - 21:30", desc: "Cena en el mercado nocturno de Myeongdong probando brochetas de pollo, tteokbokki y dumplings." }
+                ]
+            },
+            {
+                dayNum: 3,
+                date: "28 de Abril",
+                city: "Seúl",
+                cityBadgeClass: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+                title: "Seúl Imperial, Hanbok & Tradición",
+                img: "https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=800&q=80",
+                summary: "Vestimenta tradicional Hanbok en el Palacio Gyeongbokgung, callejones de Bukchon Hanok, Templo Jogyesa y atardecer.",
+                tags: ["Hanbok", "Gyeongbokgung", "Bukchon Hanok", "Jogyesa"],
+                hotel: "Hithere city Myeongdong",
+                schedule: [
+                    { time: "09:00 - 12:00", desc: "Alquiler del traje tradicional Hanbok e inspección del majestuoso Palacio Gyeongbokgung y el cambio de guardia." },
+                    { time: "12:15 - 14:00", desc: "Paseo por el pintoresco Bukchon Hanok Village admirando las casas tradicionales coreanas." },
+                    { time: "14:30 - 16:00", desc: "Visita al sereno Templo Jogyesa, centro neurálgico del budismo Zen en Seúl." },
+                    { time: "17:00 - 19:30", desc: "Atardecer panorámico y sesión fotográfica desde la colina Namsan." },
+                    { time: "20:00", desc: "Cena de Barbacoa Coreana (Samgyeopsal) tradicional." }
+                ]
+            },
+            {
+                dayNum: 4,
+                date: "29 de Abril",
+                city: "Seúl",
+                cityBadgeClass: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+                title: "Seúl Vanguardia, Tendencias & Hongdae",
+                img: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=800&q=80",
+                summary: "Sabor local en Mercado Gwangjang (crepes Bindae-tteok), arquitectura futurista Dongdaemun DDP, Seongsu-dong y ambiente nocturno Hongdae.",
+                tags: ["Mercado Gwangjang", "Seongsu", "Hongdae", "Vanguardia"],
+                hotel: "Hithere city Myeongdong",
+                schedule: [
+                    { time: "09:30 - 11:30", desc: "Desayuno gastronómico en el Mercado Gwangjang: probando Bindae-tteok (tortitas de judía verde) y Mayak Kimbap." },
+                    { time: "12:00 - 14:00", desc: "Recorrido por Dongdaemun Design Plaza (DDP) y sus vanguardistas exposiciones arquitectónicas." },
+                    { time: "14:30 - 17:30", desc: "Exploración de Seongsu-dong, el barrio de moda repleto de cafeterías de diseño e industrias reconvertidas." },
+                    { time: "18:30 - 22:00", desc: "Noche en el vibrante distrito universitario de Hongdae: espectáculos callejeros (busking), tiendas y pubs." }
+                ]
+            },
+            {
+                dayNum: 5,
+                date: "30 de Abril",
+                city: "Busán",
+                cityBadgeClass: "bg-teal-500/20 text-teal-300 border-teal-500/30",
+                title: "De Seúl a Busán & La Aldea Multicolor",
+                img: "https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=800&q=80",
+                summary: "Tren de alta velocidad KTX a Busán (08:35-11:04). Gamcheon Culture Village, teleférico de cristal Songdo, Mercado Jagalchi y paseo marítimo.",
+                tags: ["KTX", "Gamcheon", "Songdo Cable Car", "Jagalchi", "Haeundae"],
+                hotel: "Toyoko Inn Busan Seomyeon",
+                schedule: [
+                    { time: "08:35 - 11:04", desc: "Trayecto en Tren de Alta Velocidad KTX desde Seúl Station hacia Busán Station." },
+                    { time: "11:30 - 14:00", desc: "Alojamiento en Toyoko Inn Busan Seomyeon y traslado directo a Gamcheon Culture Village." },
+                    { time: "14:30 - 16:00", desc: "Teleférico Songdo Cable Car con suelo de cristal y pasarela sobre el mar Songdo Yonggung." },
+                    { time: "16:15 - 17:30", desc: "Mercado de pescado Jagalchi y degustación de Ssiat Hotteok en BIFF Square." },
+                    { time: "18:00 - 20:00", desc: "Atardecer en Huinnyeoul Culture Village y cena frente al mar en la playa de Haeundae." }
+                ]
+            },
+            {
+                dayNum: 6,
+                date: "01 de Mayo",
+                city: "Busán",
+                cityBadgeClass: "bg-teal-500/20 text-teal-300 border-teal-500/30",
+                title: "Templos Costa & Sky Capsule",
+                img: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=800&q=80",
+                summary: "Santuario costeño Haedong Yonggungsa, atracción panorámica Haeundae Blueline Sky Capsule hacia Cheongsapo y luces del puente Gwangan.",
+                tags: ["Haedong Yonggungsa", "Sky Capsule", "Playa Gwangalli", "Puente Gwangan"],
+                hotel: "Toyoko Inn Busan Seomyeon",
+                schedule: [
+                    { time: "08:30 - 11:00", desc: "Visita al icónico Templo Haedong Yonggungsa construido sobre los acantilados frente al Océano Pacífico." },
+                    { time: "11:30 - 15:00", desc: "Experiencia en Haeundae Blueline Park: trayecto en la pintoresca Sky Capsule bordeando la costa hacia Cheongsapo." },
+                    { time: "17:00 - 21:00", desc: "Tarde en la Playa Gwangalli, cena de barbacoa coreana y espectáculo nocturno de luces sobre el Puente Gwangan." }
+                ]
+            },
+            {
+                dayNum: 7,
+                date: "02 de Mayo",
+                city: "Busán",
+                cityBadgeClass: "bg-teal-500/20 text-teal-300 border-teal-500/30",
+                title: "Miles de Farolillos & Calles de Cafés",
+                img: "https://images.unsplash.com/photo-1528164344705-47542687990d?auto=format&fit=crop&w=800&q=80",
+                summary: "Templo Samgwangsa cubierto de miles de farolillos de loto por el nacimiento de Buda, Busan Citizens Park, Jeonpo Cafe Street y compras en Seomyeon.",
+                tags: ["Samgwangsa", "Farolillos Buda", "Jeonpo Cafe", "Seomyeon"],
+                hotel: "Toyoko Inn Busan Seomyeon",
+                schedule: [
+                    { time: "08:30 - 11:00", desc: "Espectacular visita al Templo Samgwangsa, engalanado con miles de farolillos multicolores con motivo del aniversario del nacimiento de Buda." },
+                    { time: "11:15 - 12:30", desc: "Paseo relajante por el Busan Citizens Park." },
+                    { time: "12:30 - 14:30", desc: "Almuerzo y ruta de repostería en la popular Jeonpo Cafe Street." },
+                    { time: "19:00 - 21:30", desc: "Compras y ambiente urbano en el Seomyeon Underground Shopping Center." }
+                ]
+            },
+            {
+                dayNum: 8,
+                date: "03 de Mayo",
+                city: "Kioto",
+                cityBadgeClass: "bg-rose-600/20 text-rose-300 border-rose-600/30",
+                title: "Salto a Japón: Llegada a Kioto & Noche Kaiseki",
+                img: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80",
+                summary: "Vuelo de Busán a Osaka (KIX) 08:35-11:04. Tren JR Haruka Express hacia Kioto. Paseo de bienvenida nocturno por Pontocho y Gion con cena Kaiseki.",
+                tags: ["Vuelo Japón", "Haruka Express", "Gion", "Pontocho", "Kaiseki"],
+                hotel: "Hotel en Kioto",
+                schedule: [
+                    { time: "08:35 - 11:04", desc: "Vuelo internacional desde Busán (PUS) hacia el Aeropuerto Internacional de Kansai, Osaka (KIX)." },
+                    { time: "12:00 - 13:15", desc: "Embarque en el tren exprés temático Hello Kitty / JR Haruka Express directo a la Estación de Kioto (1h 15m)." },
+                    { time: "14:00", desc: "Check-in en el hotel de Kioto y descanso inicial." },
+                    { time: "18:00 - 21:30", desc: "Paseo inolvidable al anochecer por las callejuelas iluminadas con faroles de Pontocho y el barrio de geishas de Gion. Cena estilo Kaiseki." }
+                ]
+            },
+            {
+                dayNum: 9,
+                date: "04 de Mayo",
+                city: "Kioto",
+                cityBadgeClass: "bg-rose-600/20 text-rose-300 border-rose-600/30",
+                title: "Kioto Ancestral: Pabellón de Oro & Kiyomizu",
+                img: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80",
+                summary: "Kinkaku-ji (Pabellón Dorado), Ryoan-ji y su jardín Zen, Bosque de Bambú Adashino, Ninenzaka, Sannenzaka y Templo Kiyomizu-dera.",
+                tags: ["Kinkaku-ji", "Ryoan-ji", "Ninenzaka", "Kiyomizu-dera"],
+                hotel: "Hotel en Kioto",
+                schedule: [
+                    { time: "07:30 - 09:00", desc: "Apertura del reflejo dorado en el estanque del Templo Kinkaku-ji (Pabellón de Oro)." },
+                    { time: "09:15 - 10:00", desc: "Contemplación del legendario jardín seco de rocas en el Templo Ryoan-ji." },
+                    { time: "10:30 - 12:30", desc: "Descubrimiento del sereno Bosque de Bambú de Adashino Nembutsu-ji." },
+                    { time: "14:00 - 17:30", desc: "Paseo por las calles tradicionales de madera Ninenzaka y Sannenzaka subiendo al santuario Kiyomizu-dera." },
+                    { time: "18:00 - 20:00", desc: "Farolillos encendidos en el Santuario Yasaka." }
+                ]
+            },
+            {
+                dayNum: 10,
+                date: "05 de Mayo",
+                city: "Kioto",
+                cityBadgeClass: "bg-rose-600/20 text-rose-300 border-rose-600/30",
+                title: "Kioto Zen: Fushimi Inari, Arashiyama & Ceremonia del Té",
+                img: "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?auto=format&fit=crop&w=800&q=80",
+                summary: "Santuario Fushimi Inari al amanecer con sus miles de Torii rojos, Templo Nanzen-ji, Mercado Nishiki, Arashiyama y Ceremonia del té privada.",
+                tags: ["Fushimi Inari", "Nishiki Market", "Arashiyama", "Ceremonia del Té"],
+                hotel: "Hotel en Kioto",
+                schedule: [
+                    { time: "07:00 - 09:15", desc: "Amanecer mágico entre los miles de portales Torii bermellón de Fushimi Inari Taisha." },
+                    { time: "09:30 - 11:00", desc: "Templo Nanzen-ji y el acueducto histórico de ladrillo rojo." },
+                    { time: "12:00 - 14:30", desc: "Degustación de brochetas, wagyu y marisco en el bullicioso Mercado Nishiki." },
+                    { time: "15:00 - 17:30", desc: "Arashiyama: Puente Togetsukyo, Templo Tenryu-ji y experiencia de Ceremonia del Té tradicional." }
+                ]
+            },
+            {
+                dayNum: 11,
+                date: "06 de Mayo",
+                city: "Kioto",
+                cityBadgeClass: "bg-rose-600/20 text-rose-300 border-rose-600/30",
+                title: "Excursión a Nara & La Capital del Matcha en Uji",
+                img: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=800&q=80",
+                summary: "Encuentro con los ciervos sagrados de Nara y el Gran Buda en Todai-ji. Escala de regreso en Uji para disfrutar de la alta repostería Matcha.",
+                tags: ["Nara", "Ciervos Sagrados", "Todai-ji", "Uji Matcha"],
+                hotel: "Hotel en Kioto",
+                schedule: [
+                    { time: "08:30 - 13:00", desc: "Excursión a Nara: Parque de Nara alimentando a los ciervos sagrados con galletas Shika-senbei y visita al imponente Gran Buda en Todai-ji." },
+                    { time: "13:30 - 17:00", desc: "Escala en la pintoresca Uji: la cuna mundial del Té Matcha. Degustación de helados, soba y postres de té junto al río." },
+                    { time: "18:00", desc: "Retorno a Kioto para cenar y descansar." }
+                ]
+            },
+            {
+                dayNum: 12,
+                date: "07 de Mayo",
+                city: "Kioto",
+                cityBadgeClass: "bg-rose-600/20 text-rose-300 border-rose-600/30",
+                title: "Camino de la Filosofía & Compras Shijo",
+                img: "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=800&q=80",
+                summary: "Santuario Shimogamo, paseo por el Camino de la Filosofía, Ginkaku-ji (Pabellón de Plata) y tarde de compras en la avenida Shijo-dori.",
+                tags: ["Camino Filosofia", "Ginkaku-ji", "Shimogamo", "Shijo Shopping"],
+                hotel: "Hotel en Kioto",
+                schedule: [
+                    { time: "09:00 - 10:30", desc: "Paseo matutino por el sereno Santuario Shimogamo rodeado de bosque ancestral." },
+                    { time: "11:00 - 13:30", desc: "Recorrido contemplativo por el Camino de la Filosofía bordeando el canal hasta el Templo Ginkaku-ji." },
+                    { time: "15:00 - 19:30", desc: "Tarde de compras y tiendas de recuerdos artesanales en la comercial avenida Shijo-dori." }
+                ]
+            },
+            {
+                dayNum: 13,
+                date: "08 de Mayo",
+                city: "Osaka",
+                cityBadgeClass: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+                title: "Llegada a Osaka: Castillo & Fiesta Dotonbori",
+                img: "https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=800&q=80",
+                summary: "Tren local a Osaka (30 min). Visita al Castillo de Osaka, barrio retro Shinsekai y festival nocturno de sabores en Dotonbori.",
+                tags: ["Osaka Castle", "Shinsekai", "Dotonbori", "Takoyaki"],
+                hotel: "Hotel en Osaka (Namba/Shinsaibashi)",
+                schedule: [
+                    { time: "09:00 - 10:00", desc: "Traslado en tren rápido de Kioto a Osaka (30 minutos)." },
+                    { time: "10:30 - 13:00", desc: "Imponente silueta del Castillo de Osaka y sus jardines de murallas concéntricas." },
+                    { time: "14:00 - 17:00", desc: "Exploración del distrito retro Shinsekai con la icónica Torre Tsutenkaku." },
+                    { time: "18:00 - 22:00", desc: "Inmersión total en los neones de Dotonbori: cenando Takoyaki recién hecho, Okonomiyaki y foto en el cartel del Glico Man." }
+                ]
+            },
+            {
+                dayNum: 14,
+                date: "09 de Mayo",
+                city: "Osaka",
+                cityBadgeClass: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+                title: "Osaka Futurismo, TeamLab & Cena Carne Kobe",
+                img: "https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=800&q=80",
+                summary: "Templo Shitenno-ji, Mercado Kuromon Ichiba, Umeda Sky Building, espectáculo digital TeamLab Botanical Garden y gran cena de despedida con auténtica carne de Kobe.",
+                tags: ["TeamLab", "Umeda Sky", "Kuromon", "Carne Kobe"],
+                hotel: "Hotel en Osaka",
+                schedule: [
+                    { time: "09:00 - 11:30", desc: "Visita histórica al Templo Shitenno-ji, uno de los más antiguos de Japón." },
+                    { time: "12:00 - 14:00", desc: "Mercado Kuromon Ichiba degustando marisco a la parrilla y brochetas de Wagyu." },
+                    { time: "15:00 - 17:30", desc: "Mirador en las alturas Umeda Sky Building." },
+                    { time: "18:30 - 20:30", desc: "Mágico show de luces en TeamLab Botanical Garden." },
+                    { time: "21:00", desc: "Cena especial de despedida en un restaurante teppanyaki probando la mítica Carne de Kobe A5." }
+                ]
+            },
+            {
+                dayNum: 15,
+                date: "10 de Mayo",
+                city: "Tránsito",
+                cityBadgeClass: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30",
+                title: "Vuelo de Regreso Osaka -> Madrid & Bus Zaragoza",
+                img: "https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&w=800&q=80",
+                summary: "Traslado temprano a Osaka KIX. Vuelo de retorno 09:05 - 21:00 a Madrid Barajas. Autobús de conexión nocturno a Zaragoza (23:30).",
+                tags: ["Vuelo Regreso", "KIX", "Madrid", "Bus Zaragoza"],
+                hotel: "Trayecto nocturno en Autobús",
+                schedule: [
+                    { time: "06:00", desc: "Traslado en tren Nankai / Haruka al Aeropuerto Internacional de Kansai (KIX)." },
+                    { time: "09:05 - 21:00", desc: "Vuelo internacional de regreso Osaka (KIX) &rarr; Madrid Barajas (MAD)." },
+                    { time: "23:30", desc: "Salida del autobús de conexión desde Madrid con destino a Zaragoza." }
+                ]
+            },
+            {
+                dayNum: 16,
+                date: "11 de Mayo",
+                city: "Tránsito",
+                cityBadgeClass: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30",
+                title: "Llegada Final a Zaragoza",
+                img: "https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=800&q=80",
+                summary: "Llegada de madrugada a la Estación Delicias de Zaragoza a las 03:15 AM. Fin del viaje e inolvidables recuerdos reunidos.",
+                tags: ["Zaragoza", "Llegada", "Fin del Viaje"],
+                hotel: "¡Hogar, dulce hogar!",
+                schedule: [
+                    { time: "03:15 AM", desc: "Llegada a Zaragoza Estación Delicias. ¡Fin de la expedición a Corea del Sur y Japón 2027!" }
+                ]
+            }
+        ];
+
+        // --- PACKING CHECKLIST DATA ---
+        const initialChecklist = [
+            { id: 1, cat: 'docs', name: 'Pasaporte con validez mínima 6 meses', checked: true },
+            { id: 2, cat: 'docs', name: 'Registro Q-Code Corea (Digital)', checked: false },
+            { id: 3, cat: 'docs', name: 'Formulario Visit Japan Web (QR)', checked: false },
+            { id: 4, cat: 'docs', name: 'Seguro médico de viaje internacional', checked: false },
+            { id: 5, cat: 'tech', name: 'Adaptador enchufe universal (Tipo C/F y A/B)', checked: true },
+            { id: 6, cat: 'tech', name: 'Power bank portátil (10.000 mAh+)', checked: false },
+            { id: 7, cat: 'tech', name: 'Tarjeta eSIM / Pocket WiFi activado', checked: false },
+            { id: 8, cat: 'clothes', name: 'Zapatillas de caminar de alto confort', checked: true },
+            { id: 9, cat: 'clothes', name: 'Chaqueta ligera / Cortavientos', checked: false },
+            { id: 10, cat: 'money', name: 'Tarjeta Revolut / Wise sin comisiones', checked: true },
+            { id: 11, cat: 'money', name: 'Efectivo en Wones y Yenes', checked: false },
+            { id: 12, cat: 'misc', name: 'Mochila de día ligera', checked: true }
+        ];
+
+        let currentCityFilter = 'all';
+        let checklistItems = JSON.parse(localStorage.getItem('asia2027_checklist')) || initialChecklist;
+
+        // --- INITIALIZATION ON LOAD ---
+        window.addEventListener('DOMContentLoaded', () => {
+            renderItinerary();
+            renderChecklist();
+            initCountdown();
+            convertCurrency();
+        });
+
+        // --- TAB SWITCHING LOGIC ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+
+            // Desktop Nav Styles
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = 'nav-btn px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2';
+            });
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if(activeNav) {
+                activeNav.className = 'nav-btn px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-rose-400 bg-rose-500/10 border border-rose-500/20 flex items-center gap-2';
+            }
+
+            // Mobile Nav Styles
+            document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+                btn.className = 'mobile-nav-btn whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300';
+            });
+            const activeMobileNav = document.getElementById(`mobile-nav-${tabId}`);
+            if(activeMobileNav) {
+                activeMobileNav.className = 'mobile-nav-btn whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-semibold bg-rose-500/20 text-rose-300 border border-rose-500/30';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- RENDER ITINERARY CARDS ---
+        function renderItinerary() {
+            const container = document.getElementById('itinerary-cards-container');
+            const searchVal = document.getElementById('search-input').value.toLowerCase();
+            container.innerHTML = '';
+
+            let visibleCount = 0;
+
+            itineraryData.forEach((day) => {
+                // City Filter logic
+                const matchesCity = currentCityFilter === 'all' || day.city === currentCityFilter;
+                
+                // Search Filter logic
+                const dayText = `${day.dayNum} ${day.date} ${day.title} ${day.summary} ${day.tags.join(' ')} ${day.hotel}`.toLowerCase();
+                const matchesSearch = dayText.includes(searchVal);
+
+                if (matchesCity && matchesSearch) {
+                    visibleCount++;
+                    const card = document.createElement('div');
+                    card.className = "glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-all duration-300 flex flex-col justify-between group";
+
+                    const tagsHtml = day.tags.map(t => `<span class="bg-slate-800/90 text-slate-300 text-[10px] px-2 py-0.5 rounded-md border border-slate-700/50">#${t}</span>`).join(' ');
+
+                    card.innerHTML = `
+                        <div>
+                            <!-- Card Header Image -->
+                            <div class="h-44 bg-cover bg-center relative overflow-hidden" style="background-image: url('${day.img}');">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+                                
+                                <!-- Top Badges -->
+                                <div class="absolute top-3 left-3 right-3 flex items-center justify-between">
+                                    <span class="bg-rose-500 text-white font-extrabold text-xs px-2.5 py-1 rounded-lg shadow-lg">
+                                        Día ${day.dayNum}
+                                    </span>
+                                    <span class="text-xs font-bold px-2.5 py-1 rounded-lg border backdrop-blur-md ${day.cityBadgeClass}">
+                                        ${day.city}
+                                    </span>
+                                </div>
+
+                                <!-- Date Tag -->
+                                <div class="absolute bottom-3 left-3 text-xs font-semibold text-slate-200">
+                                    <i class="fa-regular fa-calendar me-1 text-rose-400"></i> ${day.date}
+                                </div>
+                            </div>
+
+                            <!-- Card Body -->
+                            <div class="p-5 space-y-3">
+                                <h3 class="text-base font-bold text-white group-hover:text-rose-300 transition-colors leading-snug">
+                                    ${day.title}
+                                </h3>
+
+                                <p class="text-xs text-slate-300 leading-relaxed font-light">
+                                    ${day.summary}
+                                </p>
+
+                                <div class="flex flex-wrap gap-1 pt-1">
+                                    ${tagsHtml}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="p-5 pt-0 space-y-3">
+                            <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 flex items-center gap-2 text-xs text-slate-400">
+                                <i class="fa-solid fa-bed text-rose-400 shrink-0"></i>
+                                <span class="truncate font-medium text-slate-300">${day.hotel}</span>
+                            </div>
+
+                            <button onclick="openHourModal(${day.dayNum})" class="w-full bg-slate-800 hover:bg-rose-500/20 hover:text-rose-300 hover:border-rose-500/40 text-slate-200 border border-slate-700/70 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition-all">
+                                <i class="fa-solid fa-clock text-rose-400"></i> Ver Horario Detallado
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                }
+            });
+
+            document.getElementById('no-results-msg').style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // --- CITY FILTER CONTROL ---
+        function setCityFilter(city) {
+            currentCityFilter = city;
+            document.querySelectorAll('.city-filter-btn').forEach(btn => {
+                if(btn.getAttribute('data-city') === city) {
+                    btn.className = "city-filter-btn active-city px-3 py-1.5 rounded-lg text-xs font-semibold bg-rose-500 text-white shadow-md transition-all";
+                } else {
+                    btn.className = "city-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all";
+                }
+            });
+            renderItinerary();
+        }
+
+        function filterItinerary() {
+            renderItinerary();
+        }
+
+        function quickSearch(tag) {
+            document.getElementById('search-input').value = tag;
+            renderItinerary();
+        }
+
+        function resetSearch() {
+            document.getElementById('search-input').value = '';
+            setCityFilter('all');
+        }
+
+        // --- HOUR MODAL ---
+        function openHourModal(dayNum) {
+            const day = itineraryData.find(d => d.dayNum === dayNum);
+            if (!day) return;
+
+            document.getElementById('modal-day-badge').innerText = `Día ${day.dayNum}`;
+            document.getElementById('modal-title').innerText = `${day.title} (${day.date})`;
+
+            const timeline = document.getElementById('modal-timeline');
+            timeline.innerHTML = '';
+
+            day.schedule.forEach(item => {
+                const el = document.createElement('div');
+                el.className = "p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1";
+                el.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold text-[11px]">
+                            ${item.time}
+                        </span>
+                    </div>
+                    <p class="text-slate-300 text-xs leading-relaxed pt-0.5">${item.desc}</p>
+                `;
+                timeline.appendChild(el);
+            });
+
+            document.getElementById('hour-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('hour-modal').classList.add('hidden');
+        }
+
+        // --- PACKING CHECKLIST LOGIC ---
+        function renderChecklist() {
+            const categories = ['docs', 'tech', 'clothes', 'money', 'misc'];
+            
+            categories.forEach(cat => {
+                const container = document.getElementById(`checklist-${cat}`);
+                if (!container) return;
+                container.innerHTML = '';
+
+                const catItems = checklistItems.filter(i => i.cat === cat);
+                
+                catItems.forEach(item => {
+                    const row = document.createElement('label');
+                    row.className = "flex items-start gap-2.5 p-2 rounded-lg hover:bg-slate-800/60 cursor-pointer transition-all";
+                    row.innerHTML = `
+                        <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleChecklistItem(${item.id})" class="mt-0.5 rounded border-slate-700 text-rose-500 focus:ring-rose-500 bg-slate-900 w-4 h-4">
+                        <span class="${item.checked ? 'line-through text-slate-500' : 'text-slate-300'} font-medium leading-tight">${item.name}</span>
+                    `;
+                    container.appendChild(row);
+                });
+            });
+
+            updateChecklistProgress();
+        }
+
+        function toggleChecklistItem(id) {
+            checklistItems = checklistItems.map(item => {
+                if(item.id === id) item.checked = !item.checked;
+                return item;
+            });
+            localStorage.setItem('asia2027_checklist', JSON.stringify(checklistItems));
+            renderChecklist();
+        }
+
+        function addCustomChecklistItem(e) {
+            e.preventDefault();
+            const input = document.getElementById('custom-item-name');
+            const catSelect = document.getElementById('custom-item-cat');
+            
+            if(!input.value.trim()) return;
+
+            const newItem = {
+                id: Date.now(),
+                cat: catSelect.value,
+                name: input.value.trim(),
+                checked: false
+            };
+
+            checklistItems.push(newItem);
+            localStorage.setItem('asia2027_checklist', JSON.stringify(checklistItems));
+            input.value = '';
+            renderChecklist();
+        }
+
+        function updateChecklistProgress() {
+            if(checklistItems.length === 0) return;
+            const checkedCount = checklistItems.filter(i => i.checked).length;
+            const pct = Math.round((checkedCount / checklistItems.length) * 100);
+
+            document.getElementById('checklist-progress-text').innerText = `${pct}%`;
+            document.getElementById('checklist-progress-bar').style.width = `${pct}%`;
+        }
+
+        // --- CURRENCY CONVERTER ---
+        function convertCurrency() {
+            const eurVal = parseFloat(document.getElementById('calc-eur').value) || 0;
+            const rateKrw = parseFloat(document.getElementById('rate-krw').value) || 1480;
+            const rateJpy = parseFloat(document.getElementById('rate-jpy').value) || 162;
+
+            const krwTotal = (eurVal * rateKrw).toLocaleString('es-ES', { maximumFractionDigits: 0 });
+            const jpyTotal = (eurVal * rateJpy).toLocaleString('es-ES', { maximumFractionDigits: 0 });
+
+            document.getElementById('calc-krw').innerText = `${krwTotal} ₩`;
+            document.getElementById('calc-jpy').innerText = `${jpyTotal} ¥`;
+        }
+
+        // --- COUNTDOWN TIMER ---
+        function initCountdown() {
+            // Flight Departure Target: 26 April 2027 11:05 AM CEST
+            const targetDate = new Date('2027-04-26T11:05:00').getTime();
+
+            function updateClock() {
+                const now = new Date().getTime();
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    document.getElementById('header-countdown-text').innerText = "¡En viaje!";
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-days').innerText = days;
+                document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('cd-mins').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('cd-secs').innerText = String(seconds).padStart(2, '0');
+
+                document.getElementById('header-countdown-text').innerText = `Faltan ${days}d ${hours}h`;
+            }
+
+            updateClock();
+            setInterval(updateClock, 1000);
+        }
+    </script>
+</body>
+</html>
